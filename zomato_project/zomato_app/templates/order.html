@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Orders</h1>
+
+    <ul id="order-list">
+        {% for order in orders %}
+            <li class="order-item">
+                <p>Customer Name: {{ order.customer_name }}</p>
+                <p>Dish IDs: {{ order.dish_ids|join:", " }}</p>
+                <p>Status: {{ order.status }}</p>
+                <button class="status-btn" data-status="preparing">Preparing</button>
+                <button class="status-btn" data-status="ready">Ready</button>
+                <button class="status-btn" data-status="delivered">Delivered</button>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Place New Order</h2>
+    <form id="place-order-form">
+        <label for="customer-name">Customer Name:</label>
+        <input type="text" id="customer-name" required>
+
+        <label for="dish-ids">Dish IDs (comma separated):</label>
+        <input type="text" id="dish-ids" required>
+
+        <button type="submit">Place Order</button>
+    </form>
+{% endblock %}

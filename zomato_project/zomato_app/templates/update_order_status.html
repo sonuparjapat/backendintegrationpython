@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Update Order Status</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update Status</button>
+</form>
+{% if success %}
+<p>Order status updated successfully!</p>
+{% endif %}
+{% endblock %}

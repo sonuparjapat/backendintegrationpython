@@ -1,0 +1,20 @@
+[
+    {
+        "dish_id": 1,
+        "name": "Pizza",
+        "price": 12.99,
+        "availability": true
+    },
+    {
+        "dish_id": 2,
+        "name": "Burger",
+        "price": 8.99,
+        "availability": false
+    },
+    {
+        "dish_id": 3,
+        "name": "Pasta",
+        "price": 10.49,
+        "availability": true
+    }
+]

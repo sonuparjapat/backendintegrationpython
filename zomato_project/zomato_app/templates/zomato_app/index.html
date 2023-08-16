@@ -1,0 +1,115 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato Chronicles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
+
+</head>
+<body>
+    <header>
+        <h1>Zesty Zomato</h1>
+        <img src="{% static 'images/logo.png' %}" alt="Zesty Zomato Logo">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#orders">Orders</a></li>
+            <li><a href="#add-dish">Add Dish</a></li>
+        </ul>
+    </nav>
+
+    <section id="menu">
+        <h2>Menu</h2>
+        <div class="menu-grid">
+            <!-- Sample menu items -->
+            <div class="menu-item available">
+                <ul>
+                    {% for item in menu_items %}
+                    <li class="menu-item {% if item.availability %}available{% else %}unavailable{% endif %}">
+                        <span class="dish-name">{{ item.dish_name }}</span>
+                        <span class="dish-price">${{ item.price }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                
+                <p>Price: $10</p>
+            </div>
+            <div class="menu-item unavailable">
+                <h3>Dish Name 2</h3>
+                <p>Price: $15</p>
+            </div>
+            <!-- Add more menu items here -->
+        </div>
+    </section>
+    
+<!-- orders -->
+    <section id="orders">
+        <h2>Orders</h2>
+        <form id="order-form">
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" required>
+            
+            <label for="dish-ids">Dish IDs (comma-separated):</label>
+            <input type="text" id="dish-ids" required>
+            
+            <button type="submit">Place Order</button>
+
+            <div id="total-price">Total Price: $0</div>
+            <div>
+                <label for="dish-ids">Dish IDs:</label>
+                <input type="text" id="dish-ids" name="dish_ids">
+            </div>
+            <div>
+                <button type="submit">Place Order</button>
+            </div>
+
+
+
+
+        </form>
+        
+        <div id="order-status">
+            <p>Order received from John for dishes with IDs: 1, 3</p>
+            <p>Status: Received</p>
+            <button class="status-btn preparing">Preparing</button>
+            <button class="status-btn ready">Ready for Pickup</button>
+            <button class="status-btn delivered">Delivered</button>
+            <select id="status-filter">
+                <option value="all">All</option>
+                <option value="received">Received</option>
+                <option value="preparing">Preparing</option>
+                <option value="ready">Ready for Pickup</option>
+                <option value="delivered">Delivered</option>
+            </select>
+            
+        </div>
+        
+    </section>
+    
+
+    <section id="add-dish">
+        <h2>Add Dish</h2>
+        <!-- Add dish form here -->
+        <select id="add-dish-id">
+            {% for item in menu_items %}
+            <option value="{{ item.dish_id }}">{{ item.dish_name }}</option>
+            {% endfor %}
+        </select>
+        
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Zesty Zomato. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
